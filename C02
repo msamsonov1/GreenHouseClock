@@ -1,0 +1,35 @@
+# Import libraries
+import time
+
+# Global variables
+current_emissions = 0  # Placeholder for real-time CO2 data
+emissions_per_second = 2.3  # Average global CO2 emission per second (estimated)
+
+# Function to update emissions every second
+def update_emissions():
+    global current_emissions
+    current_emissions += emissions_per_second
+
+# Function to format emissions as a string
+def format_emissions(emissions):
+    return f"{int(emissions):05d}"  # Pad to 5 digits with zeros
+
+# Main loop
+while True:
+    update_emissions()
+
+    # Hour "bells" based on CO2 level (adjust thresholds as needed)
+    if current_emissions < 1000:
+        print("BONG")  # One "bong" for low emissions
+    elif current_emissions < 5000:
+        print("BONG BONG")  # Two "bongs" for medium emissions
+    else:
+        print("BONG BONG BONG BONG")  # Four "bongs" for high emissions
+
+    # Display current emissions
+    print(format_emissions(current_emissions))
+
+    # Sleep for one second
+    time.sleep(1)
+
+# Note: This code is a simplified example and requires real-time CO2 data source for accurate display.
